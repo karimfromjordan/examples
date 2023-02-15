@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import stream from 'node:stream';
 
-import { fail, redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 
 const DIR = 'files';
 
@@ -47,8 +47,6 @@ export const actions = {
 		const nodejs_rstream = stream.Readable.fromWeb(web_rstream);
 		// Write file to disk
 		nodejs_rstream.pipe(wstream);
-
-		throw redirect(303, '/');
 	},
 	async delete(event) {
 		const data = await event.request.formData();
@@ -66,8 +64,6 @@ export const actions = {
 		}
 
 		fs.unlinkSync(file_path);
-
-		throw redirect(303, '/');
 	}
 };
 
