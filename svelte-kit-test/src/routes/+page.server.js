@@ -6,5 +6,7 @@ export const actions = {
     const text = data.get('text');
 
     console.log(text);
+
+    return { success: true }
   }
 };
